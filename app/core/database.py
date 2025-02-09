@@ -6,7 +6,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 db_client = None
 
 # Access the MongoDB URI from environment variables
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/betting_bot")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/betting_botdb")
 
 async def connect_to_db():
     """
@@ -53,4 +53,4 @@ def get_database():
     global db_client
     if not db_client:
         raise RuntimeError("Database client is not initialized. Call `connect_to_db` first.")
-    return db_client.get_default_database() # Defaults to the database name in MONGO_URI
+    return db_client["betting_botdb"] 
